@@ -386,7 +386,6 @@ require('lazy').setup({
         gopls = {},
         pyright = {},
         zls = {},
-        markdownlint = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
