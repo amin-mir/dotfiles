@@ -30,15 +30,15 @@ vim.o.wrap = false
 vim.opt.tabstop = 4
 vim.o.termguicolors = true
 
--- Set tab size to 2 for C files
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = { 'c', 'cpp' },
---   callback = function()
---     vim.bo.tabstop = 2
---     vim.bo.shiftwidth = 2
---     -- vim.bo.expandtab = true
---   end,
--- })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c', 'cpp' },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.expandtab = true
+  end,
+})
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -392,6 +392,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         -- 'lua_ls',
         'stylua',
+        'clang-format',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

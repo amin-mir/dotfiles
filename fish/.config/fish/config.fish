@@ -1,21 +1,14 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    set fish_prompt_pwd_dir_length 0
+    alias fd fdfind
 end
 
-fish_add_path /usr/local/go/bin
-set fish_prompt_pwd_dir_length 0
+# Replicable PATH additions (do NOT clobber PATH)
+fish_add_path -g $HOME/.local/bin
+fish_add_path -g /snap/bin
+fish_add_path -g /opt/zig
+fish_add_path -g /usr/local/go/bin
+fish_add_path -g $HOME/.cargo/bin
 
-alias fd fdfind
-
- set -gx PATH \
-     $HOME/.local/bin \
-     /snap/bin \
-     /opt/zig \
-     /usr/local/go/bin \
-     $HOME/.cargo/bin \
-     /usr/local/sbin \
-     /usr/local/bin \
-     /usr/sbin \
-     /usr/bin \
-     /sbin \
-     /bin
+# Node versions via fnm
+fnm env --use-on-cd | source
