@@ -31,7 +31,7 @@ vim.opt.tabstop = 4
 vim.o.termguicolors = true
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'c', 'cpp' },
+  pattern = { 'c', 'cpp', 'hpp' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
@@ -167,20 +167,20 @@ require('lazy').setup({
     },
   },
 
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = {
-      delay = 0,
-      icons = { mappings = vim.g.have_nerd_font },
-
-      spec = {
-        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
-    },
-  },
+  -- {
+  --   'folke/which-key.nvim',
+  --   event = 'VimEnter',
+  --   opts = {
+  --     delay = 0,
+  --     icons = { mappings = vim.g.have_nerd_font },
+  --
+  --     spec = {
+  --       { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+  --       { '<leader>t', group = '[T]oggle' },
+  --       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+  --     },
+  --   },
+  -- },
 
   {
     'nvim-telescope/telescope.nvim',
@@ -201,7 +201,7 @@ require('lazy').setup({
     config = function()
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { 'vendor', '.git' },
+          file_ignore_patterns = { 'vendor', '.git', 'build/' },
         },
         extensions = {
           ['ui-select'] = {
