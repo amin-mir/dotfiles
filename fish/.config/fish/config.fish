@@ -11,4 +11,5 @@ fish_add_path -g /usr/local/go/bin
 fish_add_path -g $HOME/.cargo/bin
 
 # Node versions via fnm
+fish_add_path -g $HOME/.local/share/fnm
 fnm env --use-on-cd | source
