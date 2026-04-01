@@ -51,3 +51,16 @@ end, { desc = 'Toggle Diagnostics' })
 
 -- Create a keymap for the DiagnosticToggle command
 vim.api.nvim_set_keymap('n', '<leader>cd', '<cmd>DiagnosticToggle<CR>', { noremap = true, silent = true, desc = 'Toggle Diagnostics' })
+
+-- Copy Claude Code file reference (@path#start-end) for selected lines
+vim.keymap.set('v', '<C-M-m>', function()
+  local start_line = vim.fn.line 'v'
+  local end_line = vim.fn.line '.'
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+  local filepath = vim.fn.expand '%:~:.'
+  local ref = '@' .. filepath .. '#' .. start_line .. '-' .. end_line
+  vim.fn.setreg('+', ref)
+  vim.notify('Copied: ' .. ref)
+end, { desc = 'Copy Claude Code file reference' })
